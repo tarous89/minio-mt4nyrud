@@ -1,6 +1,7 @@
 services:
 - type: web
   name: minio-server
+  region: frankfurt
   healthCheckPath: /minio/health/live
   runtime: image
   image:
@@ -36,6 +37,7 @@ services:
 
 - type: web
   name: minio-console
+  region: frankfurt
   runtime: docker
   dockerContext: /
   dockerfilePath: ./Dockerfile
