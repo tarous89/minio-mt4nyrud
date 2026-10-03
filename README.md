@@ -1,15 +1,5 @@
-# MinIO on Render
+# Legacy MinIO deployment reference
 
-This template repository can be used to run a single node [MinIO](https://min.io) server on Render in a single click. It features SSD storage with automatic backups and fully managed TLS for MinIO.
+Reviewed: 2026-10-03. This template is not the current TrialAgents storage architecture. The active Engine stores extracted text and content-addressed dataset/report artifacts in PostgreSQL. MinIO retirement is documented in the [Engine current context](https://github.com/tarous89/intel-agent/blob/main/PROJECT_CONTEXT.md).
 
-Click the button below to deploy MinIO to your Render account:
-
-[![Deploy to Render](http://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
-
-The Blueprint uses the [Chainguard MinIO image](https://images.chainguard.dev/directory/image/minio/overview). Its Render startup command runs `/bin/sh -c` to create `/data` and then starts MinIO with `exec`. MinIO stores its data in `/data`, which is attached to the persistent disk.
-
-This will create two web services:
-* A public MinIO S3-compatible API server with automatically generated username and password environment variables. This server does not include the MinIO web console, which is a separate service. Admin credentials can be found under **Environment** in the Render dashboard.
-* A web console for MinIO. You can use the username and password generated for the API server to log in, but MinIO does not recommend it for security reasons. Instead, create a new user with the [`mc`](https://min.io/docs/minio/linux/reference/minio-mc.html) CLI. You can use the instructions at https://github.com/minio/console#setup.
-
-The two services above are defined in `render.yaml` and can be customized as needed. Note that you don't need to run the console; you can deploy MinIO and interact with it using `mc`, MinIO's command line tool linked above. To do this, remove the `minio-console` web service from `render.yaml`.
+Do not redeploy this blueprint for ordinary Intel, Custom Agents, public landing or report changes. No runtime/service deletion is performed by this documentation update. Prior template instructions are linked in [history.md](history.md).
